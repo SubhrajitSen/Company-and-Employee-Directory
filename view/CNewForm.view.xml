@@ -1,0 +1,99 @@
+<mvc:View controllerName="project1.controller.CNewForm" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:uxap="sap.uxap" xmlns:smartTable="sap.ui.comp.smarttable" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:form="sap.ui.layout.form" xmlns:f="sap.f" xmlns:layout="sap.ui.layout" xmlns:hover="project1.controller.CNewForm"
+	xmlns:customdata="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar">
+	<uxap:ObjectPageLayout id="idDCDPageObjectLayoutOVP" showAnchorBar="true" upperCaseAnchorBar="false" alwaysShowContentHeader="true"
+		preserveHeaderStateOnScroll="true" headerContentPinnable="true" isChildPage="true" enableLazyLoading="true" >
+		<uxap:headerTitle>
+			<uxap:ObjectPageDynamicHeaderTitle id="idDCDPageObjectHeaderOVP">
+				<uxap:expandedHeading>
+					<FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
+						<Title id="ObjectHeaderTitleOVP" wrapping="true" class="sapUiTinyMarginEnd sapUiTinyMarginTop"/>
+					</FlexBox>
+				</uxap:expandedHeading>
+				<uxap:snappedHeading>
+					<FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
+						<Title id="ObjectHeaderTitleSnappedOVP" wrapping="true" class="sapUiTinyMarginEnd sapUiTinyMarginTop"/>
+					</FlexBox>
+				</uxap:snappedHeading>
+				<uxap:actions>
+                <uxap:ObjectPageHeaderActionButton icon="sap-icon://reset"  id="reset" press="handleReset" enabled="true"/>
+				
+                  <uxap:ObjectPageHeaderActionButton icon="sap-icon://save"  id="save" press="handleSave"/>
+                  
+                    <uxap:ObjectPageHeaderActionButton icon="sap-icon://nav-back" text="Back to Home Page"  press="onPreviousPage"/>
+				
+                </uxap:actions>
+			</uxap:ObjectPageDynamicHeaderTitle>
+		</uxap:headerTitle>
+		<uxap:headerContent >
+			<HBox id="idDCDPage2GridLayoutovp" wrap="Wrap" fitContainer="true" alignItems="Stretch">
+				<f:Avatar displaySize="M" displayShape="Circle" src="sap-icon://customer-and-contacts" class="sapUiSmallMarginEnd"></f:Avatar>
+				<VBox class="sapUiLargeMarginEnd">
+					<ObjectAttribute title="Customer ID" id="CustomerID" text="92" />
+					
+				</VBox>
+			
+			</HBox>
+		</uxap:headerContent>
+		<uxap:sections>
+			<uxap:ObjectPageSection id="CustomerDetails" title="Customer Details" showTitle="true" titleUppercase="false">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection id="idOverviewSectionSS1">
+						<VBox>
+							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12"
+								adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="4" columnsL="4" columnsM="4"
+								singleContainerFullSize="false">
+								<form:content>
+									<core:Title text="Customer Details"/>
+									<Label text="Contact Name"/>
+									<Input value="{/ContactName}"  editable="{=${AppCreateModel>/settingEdit} === true ? true : false}"/>
+									<Label text="Contact Title"/>
+									<Input value="{/ContactTitle}"  editable="{=${AppCreateModel>/settingEdit} === true ? true : false}"/>
+									<core:Title text=""/>
+									<Label text="Fax"/>
+									<Input value="{/Fax}" type="Number" editable="{=${AppCreateModel>/settingEdit} === true ? true : false}"/>
+									
+									
+								</form:content>
+							</form:SimpleForm>
+						</VBox>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+			
+			<uxap:ObjectPageSection id="idCClausesSection" title="Personal Information" showTitle="true" titleUppercase="false">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection id="idCClausesSectionSS1">
+						<VBox>
+							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12"
+								adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="4" columnsL="4" columnsM="4"
+								singleContainerFullSize="false">
+								<form:content>
+									<core:Title text="Personal Information"/>
+									<Label text="City"/>
+									<Input value="{/City}"  editable="{=${AppCreateModel>/settingEdit} === true ? true : false}"/>
+									<Label text="Address"/>
+									<TextArea value="{/Address}"  editable="{=${AppCreateModel>/settingEdit} === true ? true : false}"/>
+									<core:Title text=""/>
+									<Label text="Postal Code"/>
+									<Input value="{/PostalCode}" type="Number" maxLength="6" editable="{=${AppCreateModel>/settingEdit} === true ? true : false}"/>
+									<Label text="Country"/>
+									<Input value="{/Country}"  editable="{=${AppCreateModel>/settingEdit} === true ? true : false}"/>
+									<Label text="Phone"/>
+									<Input value="{/Phone}"  editable="{=${AppCreateModel>/settingEdit} === true ? true : false}"/>
+								</form:content>
+							</form:SimpleForm>
+						</VBox>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+			
+		
+			
+		
+			
+			
+		</uxap:sections>
+	</uxap:ObjectPageLayout>
+</mvc:View>

@@ -1,0 +1,291 @@
+<mvc:View
+    controllerName="project1.controller.MainPage"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns:u="sap.ui.unified"
+    xmlns:core="sap.ui.core"
+    xmlns:tnt="sap.tnt"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns="sap.m"
+    xmlns:viz="sap.viz.ui5.controls"
+	xmlns:vizFeeds="sap.viz.ui5.controls.common.feeds"
+	xmlns:vizData="sap.viz.ui5.data"
+	xmlns:viz.data="sap.viz.ui5.data"
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+>
+     <tnt:ToolPage id="toolPage">
+		<tnt:header>
+			<tnt:ToolHeader>
+				<Button id="sideNavigationToggleButton" icon="sap-icon://menu2"
+					type="Transparent" press="onCollapseExpandPress">
+                   
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow" />
+					</layoutData>
+				</Button>
+				<ToolbarSpacer width="20px" />
+				<ToolbarSpacer />
+				
+				<Text  wrapping="false">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="Disappear" />
+					</layoutData>
+				</Text>
+				<ToolbarSpacer />
+			
+			</tnt:ToolHeader>
+		</tnt:header>
+		<tnt:sideContent>
+			<tnt:SideNavigation id="sideNavigation" expanded="true"
+				selectedItem="Dashboard">
+				<tnt:NavigationList>
+					<tnt:NavigationListItem text="Employees" hasExpander="false" select="onEmployees" icon="sap-icon://employee" />
+                        <tnt:NavigationListItem text="Customers" hasExpander="false" select="onCustomers" icon="sap-icon://customer-and-contacts"/>
+                  	 <tnt:NavigationListItem text="Analytics" hasExpander="false" select="onAnalytics" icon="sap-icon://horizontal-combination-chart"/>
+				</tnt:NavigationList>
+              <tnt:fixedItem>
+					<tnt:NavigationList>
+						
+						<tnt:NavigationListItem text="LogOut" icon="sap-icon://log" select="onSelectLogOut"/>
+					</tnt:NavigationList>
+				</tnt:fixedItem>
+				
+			</tnt:SideNavigation>
+		</tnt:sideContent>
+        <tnt:mainContents>
+			<NavContainer id="navCon">
+			<Page id="p_Employees" title="Employees Information"  titleAlignment="Center">
+            <content>
+ 
+				<l:VerticalLayout width="100%">
+				<fb:FilterBar showClearOnFB="true"  id="labelManagementFilter" clear="onClear" reset="onReset"
+					search="onSearch" filterBarExpanded="false" useToolbar="false" showRestoreButton="true" showClearButton="false">
+					<fb:filterGroupItems>
+						<fb:FilterGroupItem  id="FilterforEmployeeId" groupName="__$FILTER$" name="EmployeeID" label="Employees ID" partOfCurrentVariant="true"
+							visibleInFilterBar="true">
+							<fb:control>
+								<ComboBox items="{oDataModel>/Employees}" id="EmployeeID">
+									<items>
+										<core:Item id="EmployeesIDClass" key="{oDataModel>EmployeeID}" text="{oDataModel>EmployeeID}"/>
+									</items>
+								</ComboBox>
+							</fb:control>
+						</fb:FilterGroupItem>
+						<fb:FilterGroupItem id="FilterforFirstName" groupName="__$FILTER$" name="First Name" label="First Name" labelTooltip="Language"
+							partOfCurrentVariant="true" visibleInFilterBar="true">
+							<fb:control>
+								<ComboBox items="{oDataModel>/Employees}" id="FirstName">
+									<items>
+										<core:Item  id="FirstNameClass" key="{oDataModel>FirstName}" text="{oDataModel>FirstName}"/>
+									</items>
+								</ComboBox>
+							</fb:control>
+						</fb:FilterGroupItem>
+                        <fb:FilterGroupItem id="FilterforLastName" groupName="__$FILTER$" name="Last Name" label="Last Name" labelTooltip="Language"
+							partOfCurrentVariant="true" visibleInFilterBar="false">
+							<fb:control>
+								<ComboBox items="{oDataModel>/Employees}" id="LastName">
+									<items>
+										<core:Item  id="LastNameClass" key="{oDataModel>LastName}" text="{oDataModel>LastName}"/>
+									</items>
+								</ComboBox>
+							</fb:control>
+						</fb:FilterGroupItem>
+					</fb:filterGroupItems>
+				</fb:FilterBar>
+			</l:VerticalLayout>
+			
+
+
+                <smartTable:SmartTable id="smartidFilterBar"  smartFilterId="smartFilterBar" header="Employees Information" 
+				placeToolbarInTable="true" useVariantManagement="true" 
+				 showFullScreenButton="true" initiallyVisibleFields="EmployeeID"
+				demandPopin="true" entitySet="Employees" class="sapUiSmallMarginTop" tableType="ResponsiveTable" useExportToExcel="true"
+				useTablePersonalisation="true"  showRowCount="true" enableAutoBinding="true" beforeExport="onBeforeExport">
+				<smartTable:customToolbar>
+					<OverflowToolbar design="Transparent">
+						<ToolbarSpacer/>
+                        <Button text="Delete" press="onCancel"  id="cancel" />
+                        <Button text="Add" press="onAdd"/>
+					</OverflowToolbar>
+				</smartTable:customToolbar>
+                <Table id="tableID" items="{oDataModel>/Employees}"  alternateRowColors="true"  growing="true" mode="SingleSelectLeft" class="sapUiSizeCompact" sticky="ColumnHeaders,HeaderToolbar" selectionChange="onRadioButton">
+                <columns>
+                    <Column visible="true">
+                    <customData>
+								<core:CustomData key="p13nData"
+									value='\{"sortProperty": "EmployeeID", "type": "string", "filterProperty": "EmployeeID", "columnKey": "EmployeeID", "leadingProperty": "EmployeeID"}'/>
+							</customData>
+                        <Text id="empID" text="Employee ID" />
+                    </Column>
+                    <Column visible="true">
+                        <Text id="Ln" text="Last Name" />
+                    </Column>
+                    <Column visible="true">
+                        <Text id="Fn" text="First Name" />
+                    </Column>
+                    <Column visible="true">
+                        <Text id="tt" text="Title" />
+                    </Column>
+                    <Column visible="true">
+                        <Text id="toc" text="Title Of Courtesy" />
+                    </Column>
+                    <Column visible="true">
+                        <Text id="bd" text="Birth Date" />
+                    </Column>
+                    <Column>
+                        <Text id="hd" text="Hire Date"/>
+                    </Column>
+                     <Column visible="true">
+                        <Text id="add" text="Address"/>
+                    </Column>
+                    
+                </columns>
+                <items>
+              
+                    <ColumnListItem  id="ValueID" press="onRowPress" type="Navigation" visible="true">
+                        <Text text="{oDataModel>EmployeeID}"/> 
+                        <Text text="{oDataModel>LastName}"/>
+                        <Text text="{oDataModel>FirstName}"/>
+                        <Text text="{oDataModel>Title}"/>
+                        <Text text="{oDataModel>TitleOfCourtesy}"/>
+                        <Text text="{oDataModel>BirthDate}"/>
+                        <Text text="{oDataModel>HireDate}"/>
+                        <Text text="{oDataModel>Address}"/>
+                       
+                    </ColumnListItem>
+                </items>
+            </Table>
+            </smartTable:SmartTable>
+            </content>        
+			</Page>
+
+			<Page id="p_Customers" title="Customers Information"  titleAlignment="Center">
+		<content> 
+         
+   <l:VerticalLayout width="100%">
+				<fb:FilterBar showClearOnFB="true"  id="labelManagementFilter1" clear="onErase" reset="onReset"
+					search="onFilter" filterBarExpanded="false" useToolbar="false" showRestoreButton="true" showClearButton="false">
+					<fb:filterGroupItems>
+						<fb:FilterGroupItem  id="FilterforCustomerId" groupName="__$FILTER$" name="Customer ID" label="Customer ID" partOfCurrentVariant="true"
+							visibleInFilterBar="true">
+							<fb:control>
+								<ComboBox items="{oDataModel>/Customers}" id="CustomerID">
+									<items>
+										<core:Item id="CustomerIDClass" key="{oDataModel>CustomerID}" text="{oDataModel>CustomerID}"/>
+									</items>
+								</ComboBox>
+							</fb:control>
+						</fb:FilterGroupItem>
+						<fb:FilterGroupItem id="FilterforContactName" groupName="__$FILTER$" name="Contact Name" label="Contact Name" labelTooltip="Language"
+							partOfCurrentVariant="true" visibleInFilterBar="true">
+							<fb:control>
+								<ComboBox items="{oDataModel>/Customers}" id="ContactName">
+									<items>
+										<core:Item  id="ContactNameClass" key="{oDataModel>ContactName}" text="{oDataModel>ContactName}"/>
+									</items>
+								</ComboBox>
+							</fb:control>
+						</fb:FilterGroupItem>
+                        <fb:FilterGroupItem id="FilterforCompanyName" groupName="__$FILTER$" name="Company Name" label="Company Name" labelTooltip="Language"
+							partOfCurrentVariant="true" visibleInFilterBar="false">
+							<fb:control>
+								<ComboBox items="{oDataModel>/Customers}" id="CompanyName">
+									<items>
+										<core:Item  id="CompanyNameClass" key="{oDataModel>CompanyName}" text="{oDataModel>CompanyName}"/>
+									</items>
+								</ComboBox>
+							</fb:control>
+						</fb:FilterGroupItem>
+					</fb:filterGroupItems>
+				</fb:FilterBar>
+			</l:VerticalLayout>
+
+
+<smartTable:SmartTable id="smartidlabelManagement1" smartFilterId="smartFilterBar1" entitySet="Customers" tableType="ResponsiveTable" initiallyVisibleFields="CustomerID"
+				placeToolbarInTable="true" demandPopin="true" showFullScreenButton="true"  useExportToExcel="true" useVariantManagement="true"
+				  beforeExport="onBeforeExport"  useTablePersonalisation="true" header="Customer Information" showRowCount="true"  enableAutoBinding="true"   >
+				<smartTable:customToolbar>
+					<OverflowToolbar design="Transparent">
+						<ToolbarSpacer/>
+                        <Button text="Delete" press="onDelete"  id="delete" />
+                       <Button text="Add" press="onADD"/>
+					</OverflowToolbar>
+				</smartTable:customToolbar>
+<Table id="tableID1" items="{oDataModel>/Customers}"  alternateRowColors="true"  growing="true" mode="SingleSelectLeft" class="sapUiSizeCompact" sticky="ColumnHeaders,HeaderToolbar" selectionChange="onRadioButton" >
+                <columns>
+                    <Column>
+                    <customData>
+								<core:CustomData key="p13nData"
+									value='\{"sortProperty": "CustomerID", "type": "string", "filterProperty": "CustomerID", "columnKey": "CustomerID", "leadingProperty": "CustomerID"}'/>
+							</customData>
+                        <Text text="Customer ID" />
+                    </Column>
+                    <Column>
+                        <Text  text="Company Name" />
+                    </Column>
+                    <Column>
+                        <Text  text="Contact Name" />
+                    </Column>
+                    <Column>
+                        <Text  text="Contact Title" />
+                    </Column>
+                    <Column>
+                        <Text  text="Address" />
+                    </Column>
+                    <Column>
+                        <Text  text="City" />
+                    </Column>
+                    <Column>
+                        <Text  text="Postal Code" />
+                    </Column>
+                    <Column>
+                        <Text  text="Country" />
+                    </Column>
+                </columns>
+                <items>
+              
+                    <ColumnListItem  id="ValueID1" press="onSelectedRow" type="Navigation">
+                        <Text text="{oDataModel>CustomerID}"/> 
+                        <Text text="{oDataModel>CompanyName}"/>
+                        <Text text="{oDataModel>ContactName}"/>
+                        <Text text="{oDataModel>ContactTitle}"/>
+                        <Text text="{oDataModel>Address}"/>
+                        <Text text="{oDataModel>City}"/>
+                        <Text text="{oDataModel>PostalCode}"/>
+                        <Text text="{oDataModel>Country}"/>
+                    </ColumnListItem>
+                </items>
+            </Table>
+              </smartTable:SmartTable>
+            </content>  
+			</Page>
+            <Page id="p_Analytics" title="Analytical Overview"  titleAlignment="Center">
+            	<content>
+                
+                <viz:VizFrame xmlns="sap.viz" id="idDonutChart" vizType="donut" height="35rem" width="35rem"
+						vizProperties="{plotArea: { drawingEffect: 'glossy' },title:{ text:'Customer Data Analytics'}}">
+						<viz:dataset>
+							<vizData:FlattenedDataset data="{samplepiejson>/results}">
+								<vizData:dimensions>
+									<vizData:DimensionDefinition name="SetName" value="{samplepiejson>SET_NAME}"/>
+								</vizData:dimensions>
+								<vizData:measures>
+									<vizData:MeasureDefinition name="Attempts" value="{samplepiejson>ATTEMPTS}"/>
+								</vizData:measures>
+							</vizData:FlattenedDataset>
+						</viz:dataset>
+						<viz:feeds>
+							<vizFeeds:FeedItem uid="size" type="Measure" values='Attempts'/>
+							<vizFeeds:FeedItem uid="color" type="Dimension" values="SetName"/>
+						</viz:feeds>
+					</viz:VizFrame>
+                 </content>
+            </Page>
+            </NavContainer>
+		</tnt:mainContents>
+	</tnt:ToolPage>
+</mvc:View>

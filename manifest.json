@@ -1,0 +1,214 @@
+{
+    "_version": "1.32.0",
+    "sap.app": {
+        "id": "project1",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap-ux/fiori-freestyle-writer:basic",
+            "version": "0.11.15",
+            "toolsId": "fde27fbc-7e11-4f46-a619-f9019b38957e"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/v2/Northwind/Northwind.svc/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.102.1",
+            "libs": {
+                "sap.m": {},
+                "sap.uxap": {},
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "project1.i18n.i18n"
+                }
+            },
+            "oDataModel": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Request",
+                    "json": true,
+                    "defaultUpdateMethod": "PUT",
+                    "useBatch": false
+                }
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "project1.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "LogIn",
+                    "pattern": "",
+                    "target": [
+                        "LogIn"
+                    ]
+                },
+                {
+                    "name": "Account",
+                    "pattern": "Account",
+                    "target": [
+                        "Account"
+                    ]
+                },
+                {
+                    "name": "MainPage",
+                    "pattern": "MainPage",
+                    "target": [
+                        "MainPage"
+                    ]
+                },
+                {
+                    "name": "DetailPage",
+                    "pattern": "DetailPage/{ID}",
+                    "target": [
+                        "DetailPage"
+                    ]
+                },
+                {
+                    "name": "CDetailPage",
+                    "pattern": "CDetailPage/{ID1}",
+                    "target": [
+                        "CDetailPage"
+                    ]
+                },
+                {
+                    "name": "NewForm",
+                    "pattern": "NewForm",
+                    "target": [
+                        "NewForm"
+                    ]
+                },
+                {
+                    "name": "CNewForm",
+                    "pattern": "CNewForm",
+                    "target": [
+                        "CNewForm"
+                    ]
+                }
+            ],
+            "targets": {
+                "LogIn": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "LogIn",
+                    "viewName": "LogIn"
+                },
+                "Account": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "Account",
+                    "viewName": "Account"
+                },
+                "MainPage": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "MainPage",
+                    "viewName": "MainPage"
+                },
+                "DetailPage": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "DetailPage",
+                    "viewName": "DetailPage"
+                },
+                "CDetailPage": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "CDetailPage",
+                    "viewName": "CDetailPage"
+                },
+                "NewForm": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "NewForm",
+                    "viewName": "NewForm"
+                },
+                "CNewForm": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "CNewForm",
+                    "viewName": "CNewForm"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "project1.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        }
+    }
+}

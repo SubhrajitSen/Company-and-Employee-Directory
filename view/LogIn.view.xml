@@ -1,0 +1,80 @@
+<mvc:View
+    controllerName="project1.controller.LogIn"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:u="sap.ui.unified"
+    xmlns:core="sap.ui.core"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.f"
+    xmlns:card="sap.f.cards"
+    xmlns:html="https://www.w3.org/1999/xthml"
+    xmlns:tnt="sap.tnt"
+>
+
+  <Page class="myBackgroundStyle" title="Log into your Account" titleAlignment="Center">
+           <VBox class="sapUiMediumMarginBottom"  height="100%" alignItems="Center">
+                <HBox height="100%" alignItems="Center">
+                <VBox>
+					<Input class="Input" placeholder="Email id" width="20rem"
+						 tooltip="{i18n>EmplyeeId}" id="user_id" submit="onRegister"/>
+					<HBox>
+					<Input class="sapUiTinyMarginEnd"  placeholder="Password" width="20rem"  
+						type="Password" tooltip="{i18n>EnterPass}" id="password" submit="onRegister"/>
+						<ToggleButton icon="sap-icon://show"  type="Default" press="onPressPassword"/>
+                        </HBox>
+						<HBox>
+					<Button type="Accept" width="9rem" text="Log In" press="onRegister"  class="sapUiMediumMarginEnd"/>
+                    <Button type="Reject" width="9rem" text="Reset" press="onPressResetButton"></Button>
+				</HBox>
+                <Link xmlns="sap.m"
+  xmlns:core="sap.ui.core"
+  core:require="{ sapMLib: 'sap/m/library' }" 
+ text="Not registered? Click to Create an Account"
+  class="sapUiSmallMarginTop"
+  press="onPressLink"
+  emphasized="true"
+/>
+                </VBox>
+</HBox>
+                </VBox>
+          
+            </Page>
+</mvc:View>
+				
+			
+		
+	  <!-- <l:VerticalLayout width="100%" class="gridWrapper">
+            <l:Grid defaultSpan="XL6 L6 M6 S6" containerQuery="true">
+            <html:div class="LogIndiv">
+            <html:div class="centerelements">
+            <html:p class="headingpara">Welcome to Employee Portal</html:p>
+            <html:p >One stop for Employee Information, Customer Information and Analytical Overview</html:p>
+            <html:ul>
+            <html:li>Employee Information</html:li>
+            <html:li>Customer Information</html:li>
+            <html:li>Analytical Overview</html:li>
+            </html:ul> 
+            </html:div>
+            </html:div>
+            <html:div class="LogIndiv">
+            <html:div class="centerelements">
+            <f:Card class="sapUiMediumMargin" width="250px">
+            <f:header> 
+            <card:header title="Log In" subtitle="Enter Employee ID and Password" />
+            </f:header>
+            <f:content>
+            <FlexBox class="loginFlexBoxMargin" height="150px" direction="Column" alignItems="Center" width="100%">
+            <Input class="Input"  tooltip="{i18n>EmplyeeId}" placeholder="Enter Employee ID" type="Text" id="Employee_id"></Input>
+            <Input placeholder="Enter Password" type="Password" id="password"></Input>
+            <Button type="Emphasized"  text="Log In" />
+            <Button type="Reject"  text="Reset" press="onPressResetButton"></Button>
+            
+            </FlexBox>
+            </f:content>
+            </f:Card>
+            </html:div>
+            </html:div>
+            </l:Grid>
+            </l:VerticalLayout> -->

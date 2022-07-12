@@ -1,0 +1,69 @@
+<mvc:View
+    controllerName="project1.controller.Account"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:u="sap.ui.unified"
+    xmlns:core="sap.ui.core"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:microchart="sap.suite.ui.microchart"
+>
+          
+            <Page class="myBackgroundStyle" title="Create New Account" titleAlignment="Center">
+             <customHeader>
+			<Bar>
+				<contentLeft>
+                <Button text="LogIn Page" press="onPressPrevious" class="sapUiLargeMarginLeft" width="200px" icon="sap-icon://nav-back"/>
+				</contentLeft>
+                <contentMiddle>
+                <Text text="Create New Account"></Text>
+                </contentMiddle>
+	 </Bar>
+		</customHeader>
+				<VBox height="100%" alignItems="Center">
+				<HBox height="100%" alignItems="Center">
+                <VBox>	
+				
+					<Input class="Input" placeholder="Enter your Email Id" width="25rem"
+						 tooltip="{i18n>EmplyeeId}" id="user_id" submit="onRegister" type="Text"/>
+					<Input class="Input" placeholder="Enter your Name" width="25rem"
+						tooltip="{i18n>WhatName}" id="user_name" submit="onRegister" type="Text"/>
+                        <HBox>
+					<Input class="sapUiTinyMarginEnd" placeholder="Enter your New Password" width="25rem"
+						type="Password" tooltip="{i18n>EnterPass}" id="password" submit="onRegister"/>
+					  <ToggleButton icon="sap-icon://show" type="Default" press="onPressPassword"/>
+                       </HBox>
+                       <HBox>
+                    <Input class="sapUiTinyMarginEnd" placeholder="Confirm your Password" width="25rem"
+						type="Password" tooltip="{i18n>EnterpassAgain}" id="password2" submit="onRegister"/>
+							<ToggleButton icon="sap-icon://show"  type="Default" press="onPressPassword"/>
+                            </HBox>
+                            <HBox>
+<!-- 							<Switch state="true" customTextOn="M" tooltip="{i18n>gender}" customTextOff="F"/> -->
+<SegmentedButton selectedKey="Male" width="18rem">
+					<items>
+						<SegmentedButtonItem text="Male" key="Male" width="12.5rem" icon="sap-icon://employee" class="sapUiSmallMarginEnd"/>
+						<SegmentedButtonItem icon="sap-icon://wounds-doc" width="12.5rem" text="Female" />
+					</items>
+				</SegmentedButton>
+							<MessageStrip
+							class="sapUiTinyMargin"
+				id = "id_signInError"
+				text="All Fields are mandatory"
+				type="Error"
+				showIcon="true"
+				showCloseButton="true"
+				visible = "false">
+			</MessageStrip></HBox>
+            <HBox>
+				<Button type="Accept" width="12rem" class="sapUiSmallMarginEnd" text="Create Account" press="onRegister"></Button>
+				<Button type="Reject" width="12rem" text="Reset" press="onPressResetButton"></Button>
+                </HBox>
+                </VBox>
+                </HBox>
+                </VBox>
+			
+	
+	</Page>
+</mvc:View>
